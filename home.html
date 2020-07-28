@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sudoku</title>
+        <meta name='=viewport' content='width=device-width, initial-scale=1'>
+        <link href="css/styles.css" rel="stylesheet" type='text/css' >
+        <script src="js/index.js"></script>
+        <script src="js/Sudoku_Board.js"></script>
+
+    </head>
+    <body onload="game_grid()">
+        
+        <header id='main'>
+            <h1>Sudoku</h1>
+        </header>
+        
+          
+              <div id='set_game'>
+            
+        
+        <label for='difficulty'>Difficulty: </label>
+            <select name="difficulty" id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button onclick=generate(difficulty) id='generate'>generate</button>
+        </div>
+        <div id='display'>
+        <div id='numbers'>
+            <button class=numeric id='one' onclick=place(this.id)>1</button>
+            <button class=numeric id='two' onclick=place(this.id)>2</button>
+            <button class=numeric id='three' onclick=place(this.id)>3</button>
+            <button class=numeric id='four' onclick=place(this.id)>4</button>
+            <button class=numeric id='five' onclick=place(this.id)>5</button>
+            <button class=numeric id='six' onclick=place(this.id)>6</button>
+            <button class=numeric id='seven' onclick=place(this.id)>7</button>
+            <button class=numeric id='eight' onclick=place(this.id)>8</button>
+            <button class=numeric id='nine' onclick=place(this.id)>9</button>
+        </div>
+    
+        <div id='game'></div>
+
+        <div id='use'>
+            
+            <button onclick=hint() id='hint' class='buttons'>Show Hint</button>
+            <button onclick=answer() id='show_answer' class='buttons'>Show Answer</button>
+            <button onclick=pause() id='pause' class='buttons'>Pause</button>
+            <div id='data'>
+            <span id='avl_hints'>Available Hints&nbsp 3</span>
+            <span id='timer'>Time Elapsed 00:00</span>
+            <span id='mistake'>Mistakes: 0</span>
+        </div>
+        </div>
+        <footer id='done'></footer>
+    </div>
+        
+        
+    </body>
+</html>
