@@ -9,15 +9,15 @@
 
     </head>
     <body onload="game_grid()">
-        
+
         <header id='main'>
             <h1>Sudoku</h1>
         </header>
-        
-          
+
+
               <div id='set_game'>
-            
-        
+
+
         <label for='difficulty'>Difficulty: </label>
             <select name="difficulty" id="difficulty">
                 <option value="easy">Easy</option>
@@ -38,11 +38,11 @@
             <button class=numeric id='eight' onclick=place(this.id)>8</button>
             <button class=numeric id='nine' onclick=place(this.id)>9</button>
         </div>
-    
+
         <div id='game'></div>
 
         <div id='use'>
-            
+
             <button onclick=hint() id='hint' class='buttons'>Show Hint</button>
             <button onclick=answer() id='show_answer' class='buttons'>Show Answer</button>
             <button onclick=pause() id='pause' class='buttons'>Pause</button>
@@ -54,7 +54,7 @@
         </div>
         <footer id='done'></footer>
     </div>
-        
-        
+
+
     </body>
 </html>
