@@ -25,7 +25,7 @@ h1 {
     width: 70px;
     height: 70px;
     color: rgb(40 18 18);
-    background-color: rgb(240 238 238);
+    background-color: #fffffc;
 }
 #game {
     float: left;
@@ -73,17 +73,12 @@ input:enabled{
     background-color: white;
     color: rgb(14, 9, 2);
 }
-input:hover{
-    background-color: rgb(243, 220, 118);
-    color: rgb(0, 0, 0);
-}
+
 input:disabled{
-    background-color:  rgb(237, 238, 230);
+    background-color: #fffffc;
     color: black;
 }
-input:focus{
-    background-color: rgb(187, 224, 224);
-}
+
 
 #display{
     display: inline-block;
@@ -106,17 +101,13 @@ input:focus{
 }
 span{
     border: 1.5px solid black;
-    background-color: #e6e5e1;
+    background-color: #f0efeb;
     height: 40px;
     padding: 2%;
 }
 #mistake{
     height: 35px;
     padding-top: 7%;
-}
-
-#generate:active, #show_answer:active, #hint:active, #pause:active{
-    background-color: rgb(228, 241, 209);
 }
 
 #generate{
@@ -154,8 +145,6 @@ label{
     margin-left: 40%;
     margin-top: 3%;
 }
-
-
 
 @media  all and (max-width: 1100px){
     h1{

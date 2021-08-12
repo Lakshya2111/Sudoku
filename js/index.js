@@ -25,6 +25,9 @@ function game_grid(){
         if (i>=45 & i<54){
         cell.setAttribute('class','grid bottom');
         }
+        if (i>=72 & i<81){
+        cell.setAttribute('class','grid bottom');
+        }
         cell.id=count;
         count++;
         document.getElementById('game').append(cell);
@@ -40,7 +43,7 @@ function generate(){
     count=3;
     document.getElementById('avl_hints').innerHTML='Available Hints&nbsp '+count;
     document.getElementById('done').innerHTML='';
-    document.getElementById('show_answer').disabled=false;  
+    document.getElementById('show_answer').disabled=false;
     document.getElementById('mistake').innerHTML='Mistakes: '+ mistake;
     document.getElementById('pause').innerHTML='Pause';
     document.getElementById('pause').disabled=false;
@@ -58,8 +61,10 @@ function generate(){
         if (que[i]=='-'){
             cell.setAttribute('maxlength','1');
             cell.setAttribute('oninput','check(this.id)');
-            cell.setAttribute('onFocus','put(this.id)');
             cell.setAttribute('type', 'text');
+            cell.setAttribute('onmouseover','convert(this.id)');
+            cell.setAttribute('onmouseout','revert()');
+            cell.setAttribute('onFocus','put(this.id)');
             cell.disabled=false;
             cell.value='';
         }
@@ -67,7 +72,7 @@ function generate(){
             disable.push(cell.id);
             cell.value=que[i];
         }
-        
+
     }
     Clock.reset();
     Clock.start();
@@ -96,7 +101,7 @@ function check(id) {
                     flag=false;
                     break
                 }
-            } 
+            }
             if (flag){
                 document.getElementById('show_answer').disabled=true;
                 let s=document.getElementById('timer').textContent
@@ -111,10 +116,43 @@ function check(id) {
     else{
         temp.value='';
     }
-    
+
   }
 function put(id){
     store=id;
+    revert();
+    convert(id);
+}
+
+function convert(id){
+    bg_color = '#caf0f8';
+    let r = Math.floor((id - 1) / 9) * 9;
+    let c = (id - 1) % 9;
+    let block_r = Math.floor(Math.floor((id - 1) / 9) / 3);
+    let block_c = Math.floor(c / 3);
+    for (let i=r;i<r+9;i++){
+        document.getElementById(i+1).style.backgroundColor = bg_color;
+    }
+    for (let i=c;i<81;i+=9){
+        document.getElementById(i+1).style.backgroundColor = bg_color;
+    }
+    for(let j=0;j<27;j+=9){
+        let start = block_r*3*9 + block_c*3;
+        for (let i=start;i<start+3;i++){
+            document.getElementById(i+1+j).style.backgroundColor = bg_color;
+        }
+    }
+    document.getElementById(id).style.backgroundColor = '#48cae4';
+}
+function revert(){
+    for (let i=0;i<81;i++){
+        if (document.getElementById(i+1).disabled){
+            document.getElementById(i+1).style.backgroundColor = '#fffffc';
+        }
+        else{
+            document.getElementById(i+1).style.backgroundColor = 'white';
+        }
+    }
 }
 
 function pause(){
@@ -137,7 +175,7 @@ function pause(){
     for (let i=0;i<81;i++){
         let temp=document.getElementById(i+1);
         if (now[i]!='-') temp.value=now[i];
-        else temp.value=''; 
+        else temp.value='';
         temp.disabled=false;
     }
     for(let i=0;i<disable.length;i++) {
@@ -186,10 +224,10 @@ function hint(){
             document.getElementById('hint').disabled=true;
         }
     }
-        
+
 }
     }
-    
+
 
 function answer(){
     for (let i=0;i<81;i++){
@@ -211,7 +249,7 @@ var Clock = {
     flag:false,
     start: function () {
       var self = this;
-  
+
       this.interval = setInterval(function () {
         self.totalSeconds += 1;
         hours=(Math.floor(self.totalSeconds / 3600));
@@ -237,22 +275,20 @@ var Clock = {
 
       }, 1000);
     },
-  
+
     pause: function () {
       clearInterval(this.interval);
       delete this.interval;
     },
-    
+
     reset: function () {
         Clock.totalSeconds=0;
         Clock.flag=false;
         clearInterval(this.interval);
-        
+
     },
 
     resume: function () {
       if (!this.interval) this.start();
     }
   };
-  
- 
